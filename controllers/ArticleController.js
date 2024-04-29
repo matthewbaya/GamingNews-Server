@@ -28,9 +28,10 @@ class ArticleController {
 
   static async getAllArticle(req, res) {
     try {
-      res.send("hello");
+      let articles = await Article.findAll();
+      res.status(200).json(articles);
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   }
 }
