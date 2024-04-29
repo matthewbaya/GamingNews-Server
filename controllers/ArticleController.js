@@ -84,6 +84,27 @@ class ArticleController {
       }
     }
   }
+
+  static async deleteArticleById(req, res) {
+    try {
+      let article = await Article.findByPk(req.params.id);
+      if (!article) {
+        throw { name: "InvalidData" };
+      }
+      await article.destroy();
+      res
+        .status(200)
+        .json({
+          message: `Article with id ${req.params.id} succesfuly deleted`,
+        });
+    } catch (error) {
+      if (error.name === "InvalidData") {
+        res.status(404).json({ message: "Data not found" });
+      } else {
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    }
+  }
 }
 
 module.exports = ArticleController;
