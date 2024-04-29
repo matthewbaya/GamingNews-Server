@@ -46,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: DataTypes.DATE,
       categoryId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         validate: {
           notNull: true,
           notEmpty: true,
@@ -53,6 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       authorId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         validate: {
           notNull: true,
           notEmpty: true,
