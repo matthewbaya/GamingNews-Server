@@ -23,7 +23,6 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        defaultValue: "Staff",
       },
       phoneNumber: {
         type: Sequelize.STRING,

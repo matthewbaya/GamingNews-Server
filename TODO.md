@@ -58,33 +58,33 @@ Target:
   - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa array of objects yang berisikan semua data genres/categories/types.
   - [v] Jika request gagal, kembalikan response dengan 500 status code.
 
-- [ ] Mengupdate entitas kedua genres/categories/types (Update/ PUT)
+- [v] Mengupdate entitas kedua genres/categories/types (Update/ PUT)
 
-  - [ ] Endpoint ini akan menerima request body berdasar field-field di entitas kedua genres/categories/types.
-  - [ ] Id dikirimkan via request params
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object yang berisikan data yang diupdate.
-  - [ ] Jika request gagal karena data tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found.
-  - [ ] Jika request gagal karena validasi tidak terpenuhi, kembalikan response dengan 400 status code dan response body berupa object yang berisikan validation errors.
-  - [ ] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
+  - [v] Endpoint ini akan menerima request body berdasar field-field di entitas kedua genres/categories/types.
+  - [v] Id dikirimkan via request params
+  - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object yang berisikan data yang diupdate.
+  - [v] Jika request gagal karena data tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found.
+  - [v] Jika request gagal karena validasi tidak terpenuhi, kembalikan response dengan 400 status code dan response body berupa object yang berisikan validation errors.
+  - [v] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
 
-- [ ] Menghapus entitas kedua genres/categories/types (Delete / DELETE)
+- [v] Menghapus entitas kedua genres/categories/types (Delete / DELETE)
 
-  - [ ] Id dikirimkan via request params
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response berupa object yang berisikan data yang berhasil di-delete atau bisa juga mengembalikan data message saja message: '[entity name] success to delete'
-  - [ ] Jika request gagal karena todo tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found
-  - [ ] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
+  - [v] Id dikirimkan via request params
+  - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response berupa object yang berisikan data yang berhasil di-delete atau bisa juga mengembalikan data message saja message: '[entity name] success to delete'
+  - [v] Jika request gagal karena todo tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found
+  - [v] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
 
-- [ ] Mengambil semua data entitas utama (Read / GET) untuk public site
+- [v] Mengambil semua data entitas utama (Read / GET) untuk public site
 
-  - [ ] Tambahkan prefix /pub pada endpoint ini
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa array of objects yang berisikan semua data entitas utama.
-  - [ ] Jika request gagal, kembalikan response dengan 500 status code.
+  - [v] Tambahkan prefix /pub pada endpoint ini
+  - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa array of objects yang berisikan semua data entitas utama.
+  - [v] Jika request gagal, kembalikan response dengan 500 status code.
 
-- [ ] Mengambil detail entitas utama berdasar id (Read / GET) untuk public site
-  - [ ] Tambahkan prefix /pub pada endpoint kalian
-  - [ ] Id dikirimkan via request params
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object yang berisikan data.
-  - [ ] Jika request gagal karena data tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found.
+- [v] Mengambil detail entitas utama berdasar id (Read / GET) untuk public site
+  - [v] Tambahkan prefix /pub pada endpoint kalian
+  - [v] Id dikirimkan via request params
+  - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object yang berisikan data.
+  - [v] Jika request gagal karena data tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found.
 
 ### **API Documentation**
 

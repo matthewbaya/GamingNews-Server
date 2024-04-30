@@ -1,0 +1,17 @@
+[{
+    "username" : "admin",
+    "email" : "admin@gmail.com",
+    "password" : "admin",
+    "role" : "Admin",
+    "phoneNumber" : "082122460105",
+    "address" : "Sawangan"
+},
+{
+    "username" : "staff",
+    "email" : "staff@gmail.com",
+    "password" : "staff",
+    "role" : "Staff",
+    "phoneNumber" : "081234590232",
+    "address" : "Gunung Kudung"
+}
+]

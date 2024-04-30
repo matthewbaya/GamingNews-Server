@@ -1,0 +1,22 @@
+[
+    {
+        "id": 5,
+        "title": "tes lagi 2",
+        "content": "tes content lagi",
+        "imgUrl": "tes imgurl",
+        "createdAt": "2024-04-29T12:06:01.388Z",
+        "updatedAt": "2024-04-29T12:06:01.388Z",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "id": 3,
+        "title": "tes edit ha",
+        "content": "tes content lagi",
+        "imgUrl": "tes imgurl",
+        "createdAt": "2024-04-29T12:01:42.454Z",
+        "updatedAt": "2024-04-29T12:33:41.658Z",
+        "categoryId": 1,
+        "authorId": 1
+    }
+]
