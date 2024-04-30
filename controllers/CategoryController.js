@@ -15,6 +15,15 @@ class CategoryController {
       }
     }
   }
+
+  static async getAllCategories(req, res) {
+    try {
+      let categories = await Category.findAll();
+      res.status(200).json(categories);
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
 }
 
 module.exports = CategoryController;
