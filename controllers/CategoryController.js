@@ -47,6 +47,25 @@ class CategoryController {
       }
     }
   }
+
+  static async deleteCategoryById(req, res) {
+    try {
+      let category = await Category.findByPk(req.params.id);
+      if (!category) {
+        throw { name: "InvalidData" };
+      }
+      await category.destroy();
+      res.status(200).json({
+        message: `Category with the name of "${category.name}" has been succesfully deleted`,
+      });
+    } catch (error) {
+      if (error.name === "InvalidData") {
+        res.status(404).json({ message: "Data not found" });
+      } else {
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    }
+  }
 }
 
 module.exports = CategoryController;
