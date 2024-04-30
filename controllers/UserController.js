@@ -5,9 +5,30 @@ const { User } = require("../models");
 class UserController {
   static async registerUser(req, res) {
     try {
-      res.send("masuk");
+      let { username, email, password, phoneNumber, address } = req.body;
+      const [type, token] = req.headers.authorization.split(" ");
+      console.log(type);
+      let user = await User.create({
+        username,
+        email,
+        password,
+        phoneNumber,
+        address,
+      });
+      res.status(201).json({
+        message: "New user registered",
+        user: { id: user.id, email: user.email },
+      });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      console.log(error);
+      if (
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeValidationError"
+      ) {
+        res.status(400).json({ message: error.errors.map((e) => e.message) });
+      } else {
+        res.status(500).json({ message: "Internal Server Error" });
+      }
     }
   }
   static async loginUser(req, res) {
