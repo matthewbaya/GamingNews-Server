@@ -2,6 +2,9 @@ module.exports = function errorHandler(error, req, res, next) {
   if (error.name === "InvalidData") {
     res.status(404).json({ message: "Data not found" });
   }
+  if (error.name === "FileError") {
+    res.status(400).json({ message: "Please provide an image file" });
+  }
   if (
     error.name === "SequelizeUniqueConstraintError" ||
     error.name === "SequelizeValidationError"

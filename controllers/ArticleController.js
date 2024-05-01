@@ -1,4 +1,10 @@
 const { Article } = require("../models");
+var cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: "dwhlzqfjp",
+  api_key: "884423296532865",
+  api_secret: "iJvAmBmfUah5L6YsqtwuG6PgG_s",
+});
 class ArticleController {
   static async postNewArticle(req, res, next) {
     try {
@@ -61,6 +67,37 @@ class ArticleController {
     }
   }
 
+  static async updateArticleImage(req, res, next) {
+    try {
+      // let { title, content, imgUrl, categoryId, authorId } = req.body;
+      let article = await Article.findByPk(req.params.id);
+      if (!article) {
+        throw { name: "InvalidData" };
+      }
+      if (!req.file) {
+        throw { name: "FileError" };
+      }
+      const buffer = req.file.buffer.toString("base64");
+      const base64 = `data:${req.file.mimetype};base64,${buffer}`;
+      console.log({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+      });
+      let result = await cloudinary.uploader.upload(base64);
+      console.log(result);
+      await article.update({ imgUrl: result.url });
+      res
+        .status(200)
+        .json({
+          message: `Image of article with id ${req.params.id} has been updated`,
+        });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
   static async deleteArticleById(req, res, next) {
     try {
       let article = await Article.findByPk(req.params.id);
@@ -69,7 +106,7 @@ class ArticleController {
       }
       await article.destroy();
       res.status(200).json({
-        message: `Article with id ${req.params.id} succesfully deleted`,
+        message: `Article with id ${req.params.id} successfully deleted`,
       });
     } catch (error) {
       next(error);

@@ -133,23 +133,23 @@ Target:
 
 ### **Error Handler**
 
-- [ ] 401 - Error login user not found atau password not matched
-- [ ] 401 - Error authentication
-- [ ] 403 - Forbidden error di authorization
-- [ ] 400 - Error validation saat create.
-- [ ] 404 - Data not found.
-- [ ] 500 - Internal error server, dsb
+- [v] 401 - Error login user not found atau password not matched
+- [v] 401 - Error authentication
+- [v] 403 - Forbidden error di authorization
+- [v] 400 - Error validation saat create.
+- [v] 404 - Data not found.
+- [v] 500 - Internal error server, dsb
 
 ### **Upload File**
 
-- [ ] Meng-update data imgUrl entitas utama (Update / PATCH)
-  - [ ] Endpoint ini akan menerima request body berupa ("multipart/form-data") untuk meng-update data imgUrl.
-  - [ ] Id dikirimkan via request params.
-  - [ ] Membuat fitur upload menggunakan [multer](https://www.npmjs.com/package/multer) dan [imageKit](https://imagekit.io/)/[Cloudinary](https://cloudinary.com) untuk menyimpan file tersebut.
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object message: 'Image [entity name] success to update'
-  - [ ] Jika request gagal karena data tidak ditemukan, kembalikan response dengan status code 404 dan response body berupa object yang berisikan error not found.
-  - [ ] Jika request gagal karena validasi tidak terpenuhi, kembalikan response dengan status code 400 dan response body berupa object yang berisikan validation errors.
-  - [ ] Jika request gagal karena kesalahan server, kembalikan response dengan status code 500.
+- [v] Meng-update data imgUrl entitas utama (Update / PATCH)
+  - [v] Endpoint ini akan menerima request body berupa ("multipart/form-data") untuk meng-update data imgUrl.
+  - [v] Id dikirimkan via request params.
+  - [v] Membuat fitur upload menggunakan [multer](https://www.npmjs.com/package/multer) dan [imageKit](https://imagekit.io/)/[Cloudinary](https://cloudinary.com) untuk menyimpan file tersebut.
+  - [v] Jika request berhasil, kembalikan response dengan 200 status code dan response body berupa object message: 'Image [entity name] success to update'
+  - [v] Jika request gagal karena data tidak ditemukan, kembalikan response dengan status code 404 dan response body berupa object yang berisikan error not found.
+  - [v] Jika request gagal karena validasi tidak terpenuhi, kembalikan response dengan status code 400 dan response body berupa object yang berisikan validation errors.
+  - [v] Jika request gagal karena kesalahan server, kembalikan response dengan status code 500.
 
 ## **W1D3**
 
