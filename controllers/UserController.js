@@ -7,7 +7,6 @@ class UserController {
     try {
       let { username, email, password, phoneNumber, address } = req.body;
       const [type, token] = req.headers.authorization.split(" ");
-      console.log(type);
       let user = await User.create({
         username,
         email,
@@ -20,7 +19,6 @@ class UserController {
         user: { id: user.id, email: user.email },
       });
     } catch (error) {
-      console.log(error);
       if (
         error.name === "SequelizeUniqueConstraintError" ||
         error.name === "SequelizeValidationError"

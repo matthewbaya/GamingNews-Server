@@ -2,14 +2,14 @@ const { Article } = require("../models");
 class ArticleController {
   static async postNewArticle(req, res) {
     try {
-      let { title, content, imgUrl, categoryId, authorId } = req.body;
+      let { title, content, imgUrl, categoryId } = req.body;
       console.log(req.body);
       let article = await Article.create({
         title,
         content,
         imgUrl,
         categoryId,
-        authorId,
+        authorId: req.user.id,
       });
       res.status(201).json(article);
     } catch (error) {
