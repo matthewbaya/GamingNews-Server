@@ -1,6 +1,6 @@
 const { Article } = require("../models");
 class ArticleController {
-  static async postNewArticle(req, res) {
+  static async postNewArticle(req, res, next) {
     try {
       let { title, content, imgUrl, categoryId } = req.body;
       console.log(req.body);
@@ -13,20 +13,11 @@ class ArticleController {
       });
       res.status(201).json(article);
     } catch (error) {
-      console.log(error.name);
-      if (error.name === "SequelizeValidationError") {
-        res.status(400).json({
-          message: error.errors.map((e) => {
-            return e.message;
-          }),
-        });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async getAllArticles(req, res) {
+  static async getAllArticles(req, res, next) {
     try {
       let articles = await Article.findAll();
       res.status(200).json(articles);
@@ -35,7 +26,7 @@ class ArticleController {
     }
   }
 
-  static async getArticleById(req, res) {
+  static async getArticleById(req, res, next) {
     try {
       let article = await Article.findByPk(req.params.id);
       if (!article) {
@@ -43,15 +34,11 @@ class ArticleController {
       }
       res.status(200).json(article);
     } catch (error) {
-      if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async updateArticleById(req, res) {
+  static async updateArticleById(req, res, next) {
     try {
       let { title, content, imgUrl, categoryId, authorId } = req.body;
       let article = await Article.findByPk(req.params.id);
@@ -70,22 +57,11 @@ class ArticleController {
       );
       res.status(200).json({ message: "Data has been updated" });
     } catch (error) {
-      console.log(error.name);
-      if (error.name === "SequelizeValidationError") {
-        res.status(400).json({
-          message: error.errors.map((e) => {
-            return e.message;
-          }),
-        });
-      } else if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async deleteArticleById(req, res) {
+  static async deleteArticleById(req, res, next) {
     try {
       let article = await Article.findByPk(req.params.id);
       if (!article) {
@@ -96,25 +72,20 @@ class ArticleController {
         message: `Article with id ${req.params.id} succesfully deleted`,
       });
     } catch (error) {
-      if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async getPublicArticles(req, res) {
+  static async getPublicArticles(req, res, next) {
     try {
       let articles = await Article.findAll();
       res.status(200).json(articles);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Internal Server Error" });
+      next(error);
     }
   }
 
-  static async getPublicArticleById(req, res) {
+  static async getPublicArticleById(req, res, next) {
     try {
       let article = await Article.findByPk(req.params.id);
       if (!article) {
@@ -122,11 +93,7 @@ class ArticleController {
       }
       res.status(200).json(article);
     } catch (error) {
-      if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 }

@@ -26,12 +26,7 @@ async function authentication(req, res, next) {
 
     next();
   } catch (error) {
-    console.log(error);
-    if (error.name === "InvalidToken") {
-      res.status(401).json({ message: "Invalid user credentials" });
-    } else {
-      res.status(500).json({ message: "Internal Server Error" });
-    }
+    next(error);
   }
 }
 

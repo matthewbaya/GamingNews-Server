@@ -2,31 +2,27 @@ const { where } = require("sequelize");
 const { Category } = require("../models");
 
 class CategoryController {
-  static async createNewCategory(req, res) {
+  static async createNewCategory(req, res, next) {
     try {
       let { name } = req.body;
       console.log(name);
       let category = await Category.create({ name });
       res.status(201).json({ message: "New Category has been created" });
     } catch (error) {
-      if (error.name === "SequelizeValidationError") {
-        res.status(400).json({ message: error.errors[0].message });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async getAllCategories(req, res) {
+  static async getAllCategories(req, res, next) {
     try {
       let categories = await Category.findAll();
       res.status(200).json(categories);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      next(error);
     }
   }
 
-  static async updateCategoryById(req, res) {
+  static async updateCategoryById(req, res, next) {
     try {
       let { name } = req.body;
       let category = await Category.findByPk(req.params.id);
@@ -36,19 +32,11 @@ class CategoryController {
       await category.update({ name });
       res.status(200).json({ message: "Category has been updated", category });
     } catch (error) {
-      if (error.name === "SequelizeValidationError") {
-        res.status(400).json({
-          message: error.errors[0].message,
-        });
-      } else if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async deleteCategoryById(req, res) {
+  static async deleteCategoryById(req, res, next) {
     try {
       let category = await Category.findByPk(req.params.id);
       if (!category) {
@@ -59,11 +47,7 @@ class CategoryController {
         message: `Category with the name of "${category.name}" has been succesfully deleted`,
       });
     } catch (error) {
-      if (error.name === "InvalidData") {
-        res.status(404).json({ message: "Data not found" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 }

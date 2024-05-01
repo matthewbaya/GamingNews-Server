@@ -3,7 +3,7 @@ const { createToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
 class UserController {
-  static async registerUser(req, res) {
+  static async registerUser(req, res, next) {
     try {
       let { username, email, password, phoneNumber, address } = req.body;
       const [type, token] = req.headers.authorization.split(" ");
@@ -19,17 +19,10 @@ class UserController {
         user: { id: user.id, email: user.email },
       });
     } catch (error) {
-      if (
-        error.name === "SequelizeUniqueConstraintError" ||
-        error.name === "SequelizeValidationError"
-      ) {
-        res.status(400).json({ message: error.errors.map((e) => e.message) });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
-  static async loginUser(req, res) {
+  static async loginUser(req, res, next) {
     try {
       const { email, password } = req.body;
       if (!email || !password) {
@@ -48,12 +41,7 @@ class UserController {
         .status(200)
         .json({ email: user.email, role: user.role, access_token: token });
     } catch (error) {
-      // console.log(error);
-      if (error.name === "InvalidInput") {
-        res.status(401).json({ message: "Invalid email/password" });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 }

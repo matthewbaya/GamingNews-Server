@@ -8,11 +8,7 @@ async function adminAuthorization(req, res, next) {
       next();
     }
   } catch (error) {
-    if (error.name === "Unauthorized") {
-      res.status(403).json({ message: "You are not authorized" });
-    } else {
-      res.status(500).json({ message: "Internal Server Error" });
-    }
+    next(error);
   }
 }
 
@@ -33,12 +29,7 @@ async function articleAuthorization(req, res, next) {
       throw { name: "Unauthorized" };
     }
   } catch (error) {
-    console.log(error);
-    if (error.name === "Unauthorized") {
-      res.status(403).json({ message: "You are not authorized" });
-    } else {
-      res.status(500).json({ message: "Internal Server Error" });
-    }
+    next(error);
   }
 }
 
