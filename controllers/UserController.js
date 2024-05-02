@@ -25,16 +25,19 @@ class UserController {
   static async loginUser(req, res, next) {
     try {
       const { email, password } = req.body;
-      if (!email || !password) {
-        throw { name: "InvalidInput" };
+      if (!email) {
+        throw { name: "NoEmailInput" };
+      } else if (!password) {
+        throw { name: "NoPasswordInput" };
       }
+
       let user = await User.findOne({ where: { email } });
       if (!user) {
-        throw { name: "InvalidInput" };
+        throw { name: "InvalidUser" };
       }
       const compare = comparePassword(password, user.password);
       if (!compare) {
-        throw { name: "InvalidInput" };
+        throw { name: "InvalidUser" };
       }
       let token = createToken({ id: user.id });
       res
