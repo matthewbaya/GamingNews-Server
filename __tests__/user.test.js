@@ -1,5 +1,18 @@
 const app = require("../app");
 const request = require("supertest");
+const { hashPassword } = require("../helpers/bcrypt");
+const { sequelize } = require("../models");
+
+beforeAll(async () => {
+  let users = require("../users.json");
+  users.map((e) => {
+    e.createdAt = new Date();
+    e.updatedAt = new Date();
+    e.password = hashPassword(e.password);
+    return e;
+  });
+  await sequelize.queryInterface.bulkInsert("Users", users);
+});
 
 describe("Admin login Passed", () => {
   test("Should return email, role, access_token and status 200", async () => {
@@ -42,7 +55,7 @@ describe("Admin Login Failed", () => {
       password: "staff",
     };
     const response = await request(app).post("/users/login").send(user);
-    expect(response.status).toBe(403);
+    expect(response.status).toBe(401);
     expect(response.body).toHaveProperty(
       "message",
       "You have entered an invalid email or password"
@@ -55,10 +68,18 @@ describe("Admin Login Failed", () => {
       password: "invalid",
     };
     const response = await request(app).post("/users/login").send(user);
-    expect(response.status).toBe(403);
+    expect(response.status).toBe(401);
     expect(response.body).toHaveProperty(
       "message",
       "You have entered an invalid email or password"
     );
+  });
+});
+
+afterAll(async () => {
+  await sequelize.queryInterface.bulkDelete("Users", null, {
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
   });
 });

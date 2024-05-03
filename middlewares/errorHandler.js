@@ -20,7 +20,7 @@ module.exports = function errorHandler(error, req, res, next) {
   }
   if (error.name === "InvalidUser") {
     res
-      .status(403)
+      .status(401)
       .json({ message: "You have entered an invalid email or password" });
   }
   if (error.name === "InvalidToken" || error.name === "JsonWebTokenError") {

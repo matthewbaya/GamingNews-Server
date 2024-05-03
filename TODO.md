@@ -161,13 +161,13 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 
 - [ ] Login (Admin), perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Email tidak diberikan / tidak diinput
-  - [ ] Password tidak diberikan / tidak diinput
-  - [ ] Email diberikan invalid / tidak terdaftar
-  - [ ] Password diberikan salah / tidak match
+  - [v] Email tidak diberikan / tidak diinput
+  - [v] Password tidak diberikan / tidak diinput
+  - [v] Email diberikan invalid / tidak terdaftar
+  - [v] Password diberikan salah / tidak match
   - Pastikan untuk testing ini sediakan dulu data Admin
 
-- [ ] Add Staff, perlu melakukan pengecekan pada status dan response ketika:
+- [ ] (Optional) Add Staff, perlu melakukan pengecekan pada status dan response ketika:
 
   - [ ] Berhasil register
   - [ ] Email tidak diberikan / tidak diinput

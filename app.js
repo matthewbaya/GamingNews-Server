@@ -1,9 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-// const port = 3000;
 const router = require("./routes/index");
 const errorHandler = require("./middlewares/errorHandler");
-const dotenv = require("dotenv").config();
 
 //body parser
 app.use(express.urlencoded({ extended: false }));
@@ -15,7 +14,6 @@ app.get("/tes", (req, res) => {
   res.send("Hello World!");
 });
 app.use(errorHandler);
-// app.use(dotenv);
 
 // app.listen(port, () => {
 //   console.log(`Example app listening on port ${port}`);
