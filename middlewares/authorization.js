@@ -22,8 +22,7 @@ async function articleAuthorization(req, res, next) {
     if (role === "Admin") {
       next();
       return;
-    }
-    if (role === "Staff" && req.user.id === article.id) {
+    } else if (role === "Staff" && req.user.id === article.id) {
       next();
       return;
     } else {

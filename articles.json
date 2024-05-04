@@ -1,6 +1,5 @@
 [
     {
-        "id": 5,
         "title": "tes lagi 2",
         "content": "tes content lagi",
         "imgUrl": "tes imgurl",
@@ -10,7 +9,6 @@
         "authorId": 1
     },
     {
-        "id": 3,
         "title": "tes edit ha",
         "content": "tes content lagi",
         "imgUrl": "tes imgurl",

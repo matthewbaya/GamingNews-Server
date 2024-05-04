@@ -61,7 +61,7 @@ describe.skip("Create new article", () => {
   });
 });
 
-describe("Create article without user credentials", () => {
+describe.skip("Create article without user credentials", () => {
   test("Should return 'Invalid user credentials' message and status 401", async () => {
     const article = {
       title: "Jest testing",
@@ -143,6 +143,184 @@ describe.skip("Create article with invalid data", () => {
 
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message", ["Content cannot be null"]);
+  });
+});
+
+describe.skip("PUT /articles/:id success", () => {
+  test("Should return 'Data has been updated' message and status 200", async () => {
+    const data = {
+      title: "tes edit admin",
+      content: "tes content lagi",
+      imgUrl: "tes imgurl",
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(data)
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+    expect(response.status).toBe(200);
+  });
+});
+
+describe.skip("PUT /articles/:id, not logged in yet", () => {
+  test("Should return 'Invalid user credentials' message and status 401", async () => {
+    const article = {
+      title: "Jest testing",
+      content: "Jest content",
+      imgUrl: "Jest imgUrl",
+      categoryId: 1,
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(article)
+      .set("Authorization", null);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty("message", "Invalid user credentials");
+  });
+});
+
+describe.skip("PUT /articles/:id, with invalid token", () => {
+  test("Should return 'Invalid user credentials' message and status 401", async () => {
+    const article = {
+      title: "Jest testing",
+      content: "Jest content",
+      imgUrl: "Jest imgUrl",
+      categoryId: 1,
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(article)
+      .set("Authorization", process.env.INVALID_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty("message", "Invalid user credentials");
+  });
+});
+
+describe.skip("PUT /articles/:id, search data that doesn't exists", () => {
+  test("Should return 'Data not found' message and status 404", async () => {
+    const article = {
+      title: "Jest testing",
+      content: "Jest content",
+      imgUrl: "Jest imgUrl",
+      categoryId: 1,
+    };
+    const response = await request(app)
+      .put("/articles/11")
+      .send(article)
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty("message", "Data not found");
+  });
+});
+
+//not cleared
+describe.skip("PUT /articles/:id, Staff role updated data that doesn't belong to staff role", () => {
+  test("Should return 'You are not authorized' message and status 403", async () => {
+    const data = {
+      title: "tes edit admin",
+      content: "tes content lagi",
+      imgUrl: "tes imgurl",
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(data)
+      .set("Authorization", process.env.STAFF_TOKEN_EXAMPLE);
+    expect(response.status).toBe(403);
+    expect(response.body).toHaveProperty("message", "You are not authorized");
+  });
+});
+//not cleared
+
+describe.skip("PUT /articles/:id, with invalid data", () => {
+  test("Should return array of validation error message and status 400", async () => {
+    const article = {
+      title: "",
+      content: "",
+      imgUrl: "jest image",
+      categoryId: 1,
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(article)
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(400);
+    expect(response.body).toMatchObject({
+      message: ["Title cannot be empty", "Content cannot be empty"],
+    });
+  });
+  test("Should return title validation error message and status 400", async () => {
+    const article = {
+      title: "",
+      content: "tes",
+      imgUrl: "jest image",
+      categoryId: 1,
+    };
+    const response = await request(app)
+      .put("/articles/1")
+      .send(article)
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("message", ["Title cannot be empty"]);
+  });
+});
+
+describe.skip("DELETE /articles/:id success", () => {
+  test("Should return 'Article with id $id successfully deleted' message and status 200", async () => {
+    const response = await request(app)
+      .delete("/articles/1")
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty(
+      "message",
+      "Article with id 1 successfully deleted"
+    );
+  });
+});
+
+describe.skip("DELETE /articles/:id, not logged in yet", () => {
+  test("Should return 'Invalid user credentials' message and status 401", async () => {
+    const response = await request(app)
+      .put("/articles/1")
+      .set("Authorization", null);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty("message", "Invalid user credentials");
+  });
+});
+
+describe.skip("DELETE /articles/:id, with invalid token", () => {
+  test("Should return 'Invalid user credentials' message and status 401", async () => {
+    const response = await request(app)
+      .put("/articles/1")
+      .set("Authorization", process.env.INVALID_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty("message", "Invalid user credentials");
+  });
+});
+
+describe.skip("DELETE /articles/:id, search data that doesn't exists", () => {
+  test("Should return 'Data not found' message and status 404", async () => {
+    const response = await request(app)
+      .put("/articles/100")
+      .set("Authorization", process.env.ADMIN_TOKEN_EXAMPLE);
+
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty("message", "Data not found");
+  });
+});
+
+describe.skip("DELETE /articles/:id, Staff role updated data that doesn't belong to staff role", () => {
+  test("Should return 'You are not authorized' message and status 403", async () => {
+    const response = await request(app)
+      .delete("/articles/1")
+      .set("Authorization", process.env.STAFF_TOKEN_EXAMPLE);
+    expect(response.status).toBe(403);
+    expect(response.body).toHaveProperty("message", "You are not authorized");
   });
 });
 

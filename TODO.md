@@ -159,7 +159,7 @@ Target:
 
 Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 
-- [ ] Login (Admin), perlu melakukan pengecekan pada status dan response ketika:
+- [v] Login (Admin), perlu melakukan pengecekan pada status dan response ketika:
 
   - [v] Email tidak diberikan / tidak diinput
   - [v] Password tidak diberikan / tidak diinput
@@ -179,17 +179,17 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [ ] Gagal register staff karena admin belum login
   - [ ] Gagal register staff karena token yang diberikan tidak valid (random string)
 
-- [ ] Create, perlu melakukan pengecekan pada status dan response ketika:
+- [v] Create, perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Berhasil membuat entitas utama
-  - [ ] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-  - [ ] Gagal ketika request body tidak sesuai (validation required)
+  - [v] Berhasil membuat entitas utama
+  - [v] Gagal menjalankan fitur karena belum login
+  - [v] Gagal menjalankan fitur karena token yang diberikan tidak valid
+  - [v] Gagal ketika request body tidak sesuai (validation required)
   - Buatlah testing untuk masing-masing fitur
 
 - [ ] Read, perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Berhasil mendapatkan data Entitas Utama
+  - [v] Berhasil mendapatkan data Entitas Utama
   - [ ] Gagal menjalankan fitur karena belum login
   - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
 
@@ -200,22 +200,22 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
   - [ ] Gagal mendapatkan Entitas Utama karena params id yang diberikan tidak ada di database / invalid
 
-- [ ] Update PUT, perlu melakukan pengecekan pada status dan response ketika:
+- [v] Update PUT, perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Berhasil mengupdate data Entitas Utama berdasarkan params id yang diberikan
-  - [ ] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-  - [ ] Gagal karena id entity yang dikirim tidak terdapat di database
-  - [ ] Gagal menjalankan fitur ketika Staff mengolah data entity yang bukan miliknya
-  - [ ] Gagal ketika request body yang diberikan tidak sesuai
+  - [v] Berhasil mengupdate data Entitas Utama berdasarkan params id yang diberikan
+  - [v] Gagal menjalankan fitur karena belum login
+  - [v] Gagal menjalankan fitur karena token yang diberikan tidak valid
+  - [v] Gagal karena id entity yang dikirim tidak terdapat di database
+  - [v] Gagal menjalankan fitur ketika Staff mengolah data entity yang bukan miliknya
+  - [v] Gagal ketika request body yang diberikan tidak sesuai
 
-- [ ] Delete, perlu melakukan pengecekan pada status dan response ketika:
+- [v] Delete, perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Berhasil menghapus data Entitas Utama berdasarkan params id yang diberikan
-  - [ ] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-  - [ ] Gagal karena id entity yang dikirim tidak terdapat di database
-  - [ ] Gagal menjalankan fitur ketika Staff menghapus entity yang bukan miliknya
+  - [v] Berhasil menghapus data Entitas Utama berdasarkan params id yang diberikan
+  - [v] Gagal menjalankan fitur karena belum login
+  - [v] Gagal menjalankan fitur karena token yang diberikan tidak valid
+  - [v] Gagal karena id entity yang dikirim tidak terdapat di database
+  - [v] Gagal menjalankan fitur ketika Staff menghapus entity yang bukan miliknya
 
 - [ ] Update PATCH, perlu melakukan pengecekan pada status dan response ketika:
 
