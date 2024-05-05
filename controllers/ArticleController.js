@@ -1,4 +1,5 @@
 const { Article, Category, User } = require("../models");
+const { Op } = require("sequelize");
 var cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -132,7 +133,45 @@ class ArticleController {
 
   static async getPublicArticles(req, res, next) {
     try {
-      let articles = await Article.findAll();
+      const { categoryId, titleSearch, sort, page } = req.query;
+      const paramsQuerySQL = {};
+      // if (categoryId) {
+      //   paramsQuerySQL.where = { categoryId };
+      // }
+      if (titleSearch) {
+        paramsQuerySQL.where = { title: { [Op.iLike]: `%${titleSearch}%` } };
+      }
+      if (sort) {
+        const ordering = sort[0] === "-" ? "DESC" : "ASC";
+        const columnName = ordering === "DESC" ? sort.slice(1) : sort;
+        paramsQuerySQL.order = [[columnName, ordering]];
+      }
+
+      //pagination
+      //page.number = halaman
+      //page.size = limit data per halaman
+      if (page) {
+        let limit = 10;
+        let pageNumber = page.number || 1;
+        if (page.size) {
+          limit = page.size;
+          paramsQuerySQL.limit = limit;
+        }
+
+        if (page.number) {
+          paramsQuerySQL.offset = limit * (pageNumber - 1);
+        }
+        const { count, rows } = await Article.findAndCountAll(paramsQuerySQL);
+        res.status(200).json({
+          page: pageNumber,
+          data: rows,
+          totalData: count,
+          totalPage: Math.ceil(count / limit),
+          dataPerPage: limit,
+        });
+      }
+
+      let articles = await Article.findAll(paramsQuerySQL);
       res.status(200).json(articles);
     } catch (error) {
       next(error);

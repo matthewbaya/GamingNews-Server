@@ -222,7 +222,7 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [ ] Berhasil mengupdate imgUrl Entitas Utama berdasarkan params id yang diberikan
   - [ ] Gagal menjalankan fitur karena belum login
   - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-  - [ ] Gaga menjalankan fiturl karena id entity yang dikirim tidak terdapat di database
+  - [ ] Gagal menjalankan fitur karena id entity yang dikirim tidak terdapat di database
   - [ ] Gagal menjalankan fitur ketika Staff mengolah data entity yang bukan miliknya
   - [ ] Gagal ketika request body yang diberikan tidak sesuai
 
@@ -234,8 +234,8 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 
 - [ ] Endpoint List pada public site, perlu melakukan pengecekan pada status dan response ketika:
 
-  - [ ] Berhasil mendapatkan Entitas Utama tanpa menggunakan query filter parameter
-  - [ ] Berhasil mendapatkan Entitas Utama dengan 1 query filter parameter
+  - [v] Berhasil mendapatkan Entitas Utama tanpa menggunakan query filter parameter
+  - [v] Berhasil mendapatkan Entitas Utama dengan 1 query filter parameter
   - [ ] Berhasil mendapatkan Entitas Utama serta panjang yang sesuai ketika memberikan page tertentu (cek pagination-nya)
   - Pastikan untuk testing ini sediakan dulu sekitar 20 data untuk diinput di beforeAll, sehingga kita bisa melakukan ekspektasi pada data dan jumlahnya yang kita dapat ketika filter dan pagination
 
@@ -248,9 +248,9 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 Mengimplementasikan sorting, pagination dan filter pada aplikasi server yang sudah dibuat
 
 - [ ] Get list entitas utama pada Public Site
-  - [ ] Search menggunakan title/name Entitas Utama
-  - [ ] Sorting berdasarkan data terbaru/terlama (ASC/DESC)
-  - [ ] Filter Entitas Utama berdasarkan Entitas Kedua (genres/categories/types)
+  - [v] Search menggunakan title/name Entitas Utama
+  - [v] Sorting berdasarkan data terbaru/terlama (ASC/DESC)
+  - [v] Filter Entitas Utama berdasarkan Entitas Kedua (genres/categories/types)
   - [ ] Pagination dengan limit data per page berjumlah 10
 
 ## **W1D4 & W1D6**
