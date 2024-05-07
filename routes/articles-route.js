@@ -11,8 +11,6 @@ const upload = multer({ storage: storage });
 
 router.post("/", authentication, ArticleController.postNewArticle);
 router.get("/", authentication, ArticleController.getAllArticles);
-router.get("/pub", ArticleController.getPublicArticles);
-router.get("/pub/:id", ArticleController.getPublicArticleById);
 router.get("/:id", authentication, ArticleController.getArticleById);
 router.put(
   "/:id",
@@ -22,6 +20,8 @@ router.put(
 );
 router.patch(
   "/:id/img",
+  authentication,
+  articleAuthorization,
   upload.single("article_image"),
   ArticleController.updateArticleImage
 );

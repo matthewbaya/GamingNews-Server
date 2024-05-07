@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const router = require("./routes/index");
 const errorHandler = require("./middlewares/errorHandler");
+const port = process.env.PORT || 80;
 
 //body parser
 app.use(express.urlencoded({ extended: false }));
@@ -18,8 +19,8 @@ app.get("/tes", (req, res) => {
 });
 app.use(errorHandler);
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
 
 module.exports = app;

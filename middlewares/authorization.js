@@ -1,3 +1,4 @@
+const { Article } = require("../models");
 async function adminAuthorization(req, res, next) {
   try {
     const role = req.user.role;
@@ -13,7 +14,6 @@ async function adminAuthorization(req, res, next) {
 
 async function articleAuthorization(req, res, next) {
   try {
-    const { Article } = require("../models");
     const role = req.user.role;
     let article = await Article.findOne({ where: { id: req.params.id } });
     if (!article) {
@@ -22,7 +22,7 @@ async function articleAuthorization(req, res, next) {
     if (role === "Admin") {
       next();
       return;
-    } else if (role === "Staff" && req.user.id === article.id) {
+    } else if (role === "Staff" && req.user.id === article.authorId) {
       next();
       return;
     } else {
