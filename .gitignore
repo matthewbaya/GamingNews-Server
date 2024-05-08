@@ -3,5 +3,4 @@ node_modules
 sandbox.js
 .sequelizerc
 notes.txt
-rmt-48-p2-c1-vm-keys.pem
 ecosystem.config.js
