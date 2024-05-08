@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "P2-Challenge-1",
+    "database": "Matthew-News-DB",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

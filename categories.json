@@ -1,11 +1,11 @@
 [
     {
+        "name" : "Gaming"
+    },
+    {
         "name" : "Technology"
     },
     {
-        "name" : "Politics"
-    },
-    {
-        "name" : "Economy"
+        "name" : "Development"
     }
 ]

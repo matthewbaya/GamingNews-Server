@@ -150,9 +150,9 @@ class ArticleController {
       //pagination
       //page.number = halaman
       //page.size = limit data per halaman
+      let pageNumber = page?.number || 1;
       if (page) {
         let limit = 10;
-        let pageNumber = page.number || 1;
         if (page.size) {
           limit = page.size;
           paramsQuerySQL.limit = limit;
@@ -161,17 +161,18 @@ class ArticleController {
         if (page.number) {
           paramsQuerySQL.offset = limit * (pageNumber - 1);
         }
-        const { count, rows } = await Article.findAndCountAll(paramsQuerySQL);
-        res.status(200).json({
-          page: pageNumber,
-          data: rows,
-          totalData: count,
-          totalPage: Math.ceil(count / limit),
-          dataPerPage: limit,
-        });
       }
+      // const { count, rows } = await Article.findAndCountAll(paramsQuerySQL);
+      // res.status(200).json({
+      //   page: pageNumber,
+      //   data: rows,
+      //   totalData: count,
+      //   totalPage: Math.ceil(count / limit),
+      //   dataPerPage: limit,
+      // });
 
       let articles = await Article.findAll(paramsQuerySQL);
+      //console.log(articles);
       res.status(200).json(articles);
     } catch (error) {
       next(error);
