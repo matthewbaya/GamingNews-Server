@@ -134,7 +134,18 @@ class ArticleController {
   static async getPublicArticles(req, res, next) {
     try {
       const { categoryId, titleSearch, sort, page } = req.query;
-      const paramsQuerySQL = {};
+      const paramsQuerySQL = {
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+          },
+          {
+            model: User,
+            attributes: ["username", "email", "phoneNumber", "address"],
+          },
+        ],
+      };
       // if (categoryId) {
       //   paramsQuerySQL.where = { categoryId };
       // }
